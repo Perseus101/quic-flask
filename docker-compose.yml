@@ -3,5 +3,11 @@ version: '3'
 services:
     web:
         build: .
+
+    proxy:
+        image: quinn-reverse-proxy:latest
+        volumes:
+            - ./certs:/usr/src/quinn-reverse-proxy/certs
         ports:
-        - "5000:5000"
+            - "8000:80/udp"
+        command: --upstream http://web:5000
