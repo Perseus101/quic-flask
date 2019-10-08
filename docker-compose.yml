@@ -9,5 +9,5 @@ services:
         volumes:
             - ./certs:/usr/src/quinn-reverse-proxy/certs
         ports:
-            - "8000:80/udp"
+            - "0.0.0.0:8000:80/udp"
         command: --upstream http://web:5000
