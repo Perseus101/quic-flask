@@ -5,7 +5,7 @@ services:
         build: .
 
     proxy:
-        image: quinn-reverse-proxy:latest
+        image: perseus101/quinn-reverse-proxy:latest
         volumes:
             - ./certs:/usr/src/quinn-reverse-proxy/certs
         ports:
