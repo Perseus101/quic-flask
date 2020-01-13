@@ -3,11 +3,13 @@ version: '3'
 services:
     web:
         build: .
-
+        environment:
+            - ARC_DB_HOST=10.10.10.10
+            - ARC_FLIGHT=10
     proxy:
-        image: perseus101/quinn-reverse-proxy:latest
+        image: reverse-proxy
         volumes:
             - ./certs:/usr/src/quinn-reverse-proxy/certs
         ports:
             - "0.0.0.0:8000:80/udp"
-        command: --upstream http://web:5000
+        command: --upstream http://web:5000 --cert ./certs/cert.der --key ./certs/key.der
